@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "bts.sio.azurimmo3"
+    namespace = "bts.sio.paris2024kotlin"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "bts.sio.azurimmo3"
+        applicationId = "bts.sio.paris2024kotlin"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
