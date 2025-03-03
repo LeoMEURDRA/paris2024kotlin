@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import bts.sio.paris2024kotlin.views.athlete.AthleteList
+import bts.sio.paris2024kotlin.views.olympiade.OlympiadeList
 import bts.sio.paris2024kotlin.views.sport.SportList
 
 @Composable
@@ -23,7 +24,7 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
             AthleteList()
         }
         composable("olympiades_list") {
-            Text("Page olympiades")
+            OlympiadeList()
         }
         composable("pays_list") {
             Text("Page pays")
