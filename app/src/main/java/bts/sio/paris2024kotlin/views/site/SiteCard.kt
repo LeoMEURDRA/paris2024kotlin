@@ -26,7 +26,7 @@ fun SiteCard(site: Site) {
             modifier = Modifier.padding(16.dp)
         ) {
             Text(text = site.nom, style = MaterialTheme.typography.bodyLarge)
-            Text(text = "${site.rue}, ${site.code_postal} ${site.ville}", style = MaterialTheme.typography.bodyLarge)
+            Text(text = "${site.rue}, ${site.code_postal} ${site.ville}", style = MaterialTheme.typography.bodyMedium)
 
         }
     }
