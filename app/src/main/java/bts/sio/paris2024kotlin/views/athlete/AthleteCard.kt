@@ -26,11 +26,10 @@ fun AthleteCard(athlete: Athlete) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            val dateFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy")
-            val formattedDate = athlete.dateNaiss.format(dateFormatter)
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
             Text(text = "${athlete.nom} ${athlete.prenom}", style = MaterialTheme.typography.bodyLarge)
-            Text(text = formattedDate, style = MaterialTheme.typography.bodyMedium)
+            Text(text = athlete.dateNaiss.format(formatter), style = MaterialTheme.typography.bodyMedium)
         }
     }
 }

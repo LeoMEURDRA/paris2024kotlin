@@ -20,17 +20,17 @@ class PaysViewModel : ViewModel() {
     val errorMessage: StateFlow<String?> = _errorMessage
 
     init {
-        getPays()
+        getLesPays()
     }
 
 
-    private fun getPays() {
+    private fun getLesPays() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
 
             try {
-                val response = RetrofitInstance.api.getPays()
+                val response = RetrofitInstance.api.getLesPays()
                 _pays.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"

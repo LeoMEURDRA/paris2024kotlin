@@ -20,17 +20,17 @@ class SportViewModel : ViewModel() {
     val errorMessage: StateFlow<String?> = _errorMessage
 
     init {
-        getSports()
+        getLesSports()
     }
 
 
-    private fun getSports() {
+    private fun getLesSports() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
 
             try {
-                val response = RetrofitInstance.api.getSports()
+                val response = RetrofitInstance.api.getLesSports()
                 _sports.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"

@@ -20,17 +20,17 @@ class SiteViewModel : ViewModel() {
     val errorMessage: StateFlow<String?> = _errorMessage
 
     init {
-        getSites()
+        getLesSites()
     }
 
 
-    private fun getSites() {
+    private fun getLesSites() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
 
             try {
-                val response = RetrofitInstance.api.getSites()
+                val response = RetrofitInstance.api.getLesSites()
                 _sites.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"

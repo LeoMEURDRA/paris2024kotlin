@@ -20,17 +20,17 @@ class OlympiadeViewModel : ViewModel() {
     val errorMessage: StateFlow<String?> = _errorMessage
 
     init {
-        getOlympiades()
+        getLesOlympiades()
     }
 
 
-    private fun getOlympiades() {
+    private fun getLesOlympiades() {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
 
             try {
-                val response = RetrofitInstance.api.getOlympiades()
+                val response = RetrofitInstance.api.getLesOlympiades()
                 _olympiades.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
