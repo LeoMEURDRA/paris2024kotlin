@@ -8,18 +8,18 @@ import bts.sio.paris2024kotlin.model.Site
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("/sports")
-    suspend fun getSports(): List<Sport>
+    @GET("/sport/lister")
+    suspend fun getLesSports(): List<Sport>
 
-    @GET("/athletes")
-    suspend fun getAthletes(): List<Athlete>
+    @GET("/athlete/lister")
+    suspend fun getLesAthletes(): List<Athlete>
 
-    @GET("/olympiades")
-    suspend fun getOlympiades(): List<Olympiade>
+    @GET("/olympiade/lister")
+    suspend fun getLesOlympiades(): List<Olympiade>
 
-    @GET("/sites")
-    suspend fun getSites(): List<Site>
+    @GET("/site/lister")
+    suspend fun getLesSites(): List<Site>
 
-    @GET("/pays")
-    suspend fun getPays(): List<Pays>
+    @GET("/pays/lister")
+    suspend fun getLesPays(): List<Pays>
 }
