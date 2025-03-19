@@ -5,7 +5,9 @@ import bts.sio.paris2024kotlin.model.Olympiade
 import bts.sio.paris2024kotlin.model.Pays
 import bts.sio.paris2024kotlin.model.Sport
 import bts.sio.paris2024kotlin.model.Site
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
     @GET("/sport/lister")
@@ -13,6 +15,9 @@ interface ApiService {
 
     @GET("/athlete/lister")
     suspend fun getLesAthletes(): List<Athlete>
+
+    @GET("/athlete/pays/{pays_id}")
+    suspend fun getLesAthletesByPays(@Path("pays_id") pays_id: Int): List<Athlete>
 
     @GET("/olympiade/lister")
     suspend fun getLesOlympiades(): List<Olympiade>
@@ -22,4 +27,7 @@ interface ApiService {
 
     @GET("/pays/lister")
     suspend fun getLesPays(): List<Pays>
+
+    @GET("/pays/consulter")
+    suspend fun getPays(pays_id: Int): Response<Pays>
 }
