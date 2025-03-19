@@ -1,6 +1,5 @@
 package bts.sio.paris2024kotlin.views.pays
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,16 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import bts.sio.paris2024kotlin.model.Pays
 
 @Composable
-fun PaysCard(pays: Pays, navController: NavController) {
+fun PaysCard(pays: Pays) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
-            .clickable { navController.navigate("athletes_list?pays_id=${pays.id}") }, // Use pays.id here
+            .padding(8.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
@@ -29,6 +26,7 @@ fun PaysCard(pays: Pays, navController: NavController) {
             modifier = Modifier.padding(16.dp)
         ) {
             Text(text = pays.nom, style = MaterialTheme.typography.bodyLarge)
+
         }
     }
 }

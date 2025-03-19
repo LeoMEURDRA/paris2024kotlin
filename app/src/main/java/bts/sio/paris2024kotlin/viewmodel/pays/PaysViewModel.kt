@@ -10,11 +10,8 @@ import kotlinx.coroutines.launch
 
 class PaysViewModel : ViewModel() {
 
-    private val _paysList = MutableStateFlow<List<Pays>>(emptyList())
-    val paysList: StateFlow<List<Pays>> = _paysList
-
-    private val _pays = MutableStateFlow<Pays?>(null)
-    val pays: StateFlow<Pays?> = _pays
+    private val _pays = MutableStateFlow<List<Pays>>(emptyList())
+    val pays: StateFlow<List<Pays>> = _pays
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -34,7 +31,7 @@ class PaysViewModel : ViewModel() {
 
             try {
                 val response = RetrofitInstance.api.getLesPays()
-                _paysList.value = response  // Update with the list of Pays
+                _pays.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
             } finally {
@@ -44,21 +41,5 @@ class PaysViewModel : ViewModel() {
         }
     }
 
-    fun getPays(pays_id: Int) {
-        viewModelScope.launch {
-            _isLoading.value = true
-            _errorMessage.value = null
-
-            try {
-                val response = RetrofitInstance.api.getPays(pays_id)
-                _pays.value = response.body()  // Update with the single Pays object
-            } catch (e: Exception) {
-                _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
-            } finally {
-                _isLoading.value = false
-                println("Chargement terminé")
-            }
-        }
-    }
 
 }
