@@ -15,7 +15,8 @@ fun AppBottomBar(navController: NavController) {
         BottomNavItem("Athletes", "athletes_list", Icons.Filled.Person),
         BottomNavItem("Olympiades", "olympiades_list", Icons.Filled.EmojiEvents),
         BottomNavItem("Pays", "pays_list", Icons.Filled.Flag),
-        BottomNavItem("Sites", "sites_list", Icons.Filled.Map)
+        BottomNavItem("Sites", "sites_list", Icons.Filled.Map),
+        BottomNavItem("Promo", "promotions_list", Icons.Filled.Discount)
     )
 
     var selectedItem by remember { mutableStateOf(0) }
