@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import bts.sio.paris2024kotlin.views.athlete.AthleteList
 import bts.sio.paris2024kotlin.views.olympiade.OlympiadeList
 import bts.sio.paris2024kotlin.views.pays.PaysList
+import bts.sio.paris2024kotlin.views.promotion.PromotionList
 import bts.sio.paris2024kotlin.views.site.SiteList
 import bts.sio.paris2024kotlin.views.sport.SportList
 
@@ -32,6 +33,9 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         }
         composable("sites_list") {
             SiteList()
+        }
+        composable("promotions_list") {
+            PromotionList()
         }
     }
 }
