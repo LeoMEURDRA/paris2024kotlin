@@ -7,4 +7,5 @@ data class Athlete(
     val nom: String,
     val prenom: String,
     val dateNaiss: LocalDate,
+    val pays: Pays
 )
