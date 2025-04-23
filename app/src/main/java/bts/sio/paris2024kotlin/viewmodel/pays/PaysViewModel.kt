@@ -58,4 +58,22 @@ class PaysViewModel : ViewModel() {
             }
         }
     }
+
+    fun addPays(pays: Pays) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                val response = RetrofitInstance.api.addPays(pays)
+                if (response.isSuccessful) {
+                    getLesPays()
+                } else {
+                    _errorMessage.value = "Erreur lors de l'ajout du pays : ${response.message()}"
+                }
+            } catch (e: Exception) {
+                _errorMessage.value = "Erreur : ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
 }
