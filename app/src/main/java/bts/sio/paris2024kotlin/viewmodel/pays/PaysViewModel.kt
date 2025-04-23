@@ -1,17 +1,20 @@
 package bts.sio.paris2024kotlin.viewmodel.pays
 
 import androidx.lifecycle.ViewModel
-import bts.sio.paris2024kotlin.model.Pays
 import androidx.lifecycle.viewModelScope
 import bts.sio.paris2024kotlin.api.RetrofitInstance
+import bts.sio.paris2024kotlin.model.Pays
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class PaysViewModel : ViewModel() {
 
-    private val _pays = MutableStateFlow<List<Pays>>(emptyList())
-    val pays: StateFlow<List<Pays>> = _pays
+    private val _paysList = MutableStateFlow<List<Pays>>(emptyList())
+    val paysList: StateFlow<List<Pays>> = _paysList
+
+    private val _pays = MutableStateFlow<Pays?>(null)
+    val pays: StateFlow<Pays?> = _pays
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -23,23 +26,36 @@ class PaysViewModel : ViewModel() {
         getLesPays()
     }
 
-
     private fun getLesPays() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _errorMessage.value = null
+            try {
+                val response = RetrofitInstance.api.getLesPays()
+                _paysList.value = response
+            } catch (e: Exception) {
+                _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
+            } finally {
+                _isLoading.value = false
+                println("Chargement du pays terminé")
+            }
+        }
+    }
+
+    fun getPays(id : Int) {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
 
             try {
-                val response = RetrofitInstance.api.getLesPays()
-                _pays.value = response
+                val response = RetrofitInstance.api.getPays(id)
+                _pays.value = response.body()
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.localizedMessage ?: "Une erreur s'est produite"}"
             } finally {
                 _isLoading.value = false
-                println("Chargement terminé")
+                println("Chargement du pays terminé")
             }
         }
     }
-
-
 }

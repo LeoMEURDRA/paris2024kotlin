@@ -25,11 +25,15 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         composable("athletes_list") {
             AthleteList()
         }
+        composable("athletes_list?paysId={paysId}") { backStackEntry ->
+            val paysId = backStackEntry.arguments?.getString("paysId")?.toIntOrNull()
+            AthleteList(paysId = paysId)
+        }
         composable("olympiades_list") {
             OlympiadeList()
         }
         composable("pays_list") {
-            PaysList()
+            PaysList(navController = navController)
         }
         composable("sites_list") {
             SiteList()
