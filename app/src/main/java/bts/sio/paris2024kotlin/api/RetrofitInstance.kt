@@ -8,7 +8,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://10.0.2.2:9005/"
+    private const val BASE_URL = "http://172.20.177.251:8080/leoparis2024api/"
 
     val localDateTypeAdapter: JsonDeserializer<LocalDate> = JsonDeserializer { json, _, _ ->
         LocalDate.parse(json.asString, DateTimeFormatter.ISO_LOCAL_DATE)
