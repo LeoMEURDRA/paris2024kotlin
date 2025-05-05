@@ -13,30 +13,30 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("/sport/lister")
+    @GET("sport/lister")
     suspend fun getLesSports(): List<Sport>
 
-    @GET("/athlete/pays/{paysId}")
+    @GET("athlete/pays/{paysId}")
     suspend fun getLesAthletesByPays(@Path("paysId") paysId: Int): List<Athlete>
 
-    @GET("/athlete/lister")
+    @GET("athlete/lister")
     suspend fun getLesAthletes(): List<Athlete>
 
-    @GET("/olympiade/lister")
+    @GET("olympiade/lister")
     suspend fun getLesOlympiades(): List<Olympiade>
 
-    @GET("/site/lister")
+    @GET("site/lister")
     suspend fun getLesSites(): List<Site>
 
-    @GET("/pays/lister")
+    @GET("pays/lister")
     suspend fun getLesPays(): List<Pays>
 
-    @POST("/pays/ajouter")
+    @POST("pays/ajouter")
     suspend fun addPays(@Body pays: Pays): Response<Pays>
 
-    @GET("/pays/consulter/{id}")
+    @GET("pays/consulter/{id}")
     suspend fun getPays(@Path("id") id: Int): Response<Pays>
 
-    @GET("/promotion/lister")
+    @GET("promotion/lister")
     suspend fun getLesPromotions(): List<Promotion>
 }
