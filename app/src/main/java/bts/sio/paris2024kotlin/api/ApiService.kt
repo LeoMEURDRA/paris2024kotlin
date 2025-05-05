@@ -6,10 +6,12 @@ import bts.sio.paris2024kotlin.model.Pays
 import bts.sio.paris2024kotlin.model.Promotion
 import bts.sio.paris2024kotlin.model.Site
 import bts.sio.paris2024kotlin.model.Sport
+
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -36,6 +38,9 @@ interface ApiService {
 
     @GET("pays/consulter/{id}")
     suspend fun getPays(@Path("id") id: Int): Response<Pays>
+
+    @PUT("pays/modifier/{id}")
+    suspend fun updatePays(@Path("id") id: Int, @Body pays: Pays): Response<Pays>
 
     @GET("promotion/lister")
     suspend fun getLesPromotions(): List<Promotion>

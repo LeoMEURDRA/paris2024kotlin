@@ -22,6 +22,9 @@ class PaysViewModel : ViewModel() {
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage
 
+    private val _operationSuccess = MutableStateFlow(false)
+    val operationSuccess: StateFlow<Boolean> = _operationSuccess
+
     init {
         getLesPays()
     }
@@ -62,10 +65,12 @@ class PaysViewModel : ViewModel() {
     fun addPays(pays: Pays) {
         viewModelScope.launch {
             _isLoading.value = true
+            _operationSuccess.value = false
             try {
                 val response = RetrofitInstance.api.addPays(pays)
                 if (response.isSuccessful) {
                     getLesPays()
+                    _operationSuccess.value = true
                 } else {
                     _errorMessage.value = "Erreur lors de l'ajout du pays : ${response.message()}"
                 }
@@ -75,5 +80,31 @@ class PaysViewModel : ViewModel() {
                 _isLoading.value = false
             }
         }
+    }
+
+    fun updatePays(pays: Pays) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _operationSuccess.value = false
+            try {
+                val response = RetrofitInstance.api.addPays(pays)
+
+                if (response.isSuccessful) {
+                    getLesPays()
+                    _operationSuccess.value = true
+                } else {
+                    _errorMessage.value = "Erreur lors de la modification du pays : ${response.message()}"
+                }
+            } catch (e: Exception) {
+                _errorMessage.value = "Erreur : ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun resetOperationStatus() {
+        _operationSuccess.value = false
+        _errorMessage.value = null
     }
 }

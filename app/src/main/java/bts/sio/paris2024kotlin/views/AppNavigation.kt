@@ -5,9 +5,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import android.os.Build
+import androidx.compose.material3.Text
 import bts.sio.paris2024.views.pays.PaysAdd
 import bts.sio.paris2024kotlin.views.athlete.AthleteList
 import bts.sio.paris2024kotlin.views.olympiade.OlympiadeList
+import bts.sio.paris2024kotlin.views.pays.PaysEdit
 import bts.sio.paris2024kotlin.views.pays.PaysList
 import bts.sio.paris2024kotlin.views.promotion.PromotionList
 import bts.sio.paris2024kotlin.views.site.SiteList
@@ -38,6 +41,14 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         }
         composable("pays_add") {
             PaysAdd(navController = navController)
+        }
+        composable("pays_edit/{paysId}") { backStackEntry ->
+            val paysId = backStackEntry.arguments?.getString("paysId")?.toIntOrNull() ?: 0
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                PaysEdit(paysId = paysId, navController = navController)
+            } else {
+                Text("Fonctionnalité non disponible sur cette version d'Android")
+            }
         }
         composable("sites_list") {
             SiteList()
